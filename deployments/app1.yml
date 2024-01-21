@@ -41,7 +41,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ndl
+  namespace: cybersec
   name: app1
 spec:
   selector:
