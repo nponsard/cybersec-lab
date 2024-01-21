@@ -24,8 +24,8 @@ spec:
               kinds:
                 - Pod
       validate:
-        message: "The label `app.kubernetes.io/name` is required."
+        message: "The label `name` is required."
         pattern:
           metadata:
             labels:
-              app.kubernetes.io/name: "?*"
+              name: "?*"

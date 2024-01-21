@@ -52,9 +52,18 @@ spec:
     metadata:
       labels:
         app: app2
+        name: app2
     spec:
       containers:
         - name: app2
           image: sautax/cybersec-app-2:latest
           ports:
             - containerPort: 3000
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
