@@ -47,7 +47,7 @@ spec:
   selector:
     matchLabels:
       app: app2
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -56,7 +56,7 @@ spec:
     spec:
       containers:
         - name: app2
-          image: sautax/cybersec-app-2:latest
+          image: sautax/cybersec-app-2:1.1
           ports:
             - containerPort: 3000
           securityContext:
