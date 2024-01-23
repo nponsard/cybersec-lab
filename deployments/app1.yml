@@ -4,23 +4,23 @@ kind: Ingress
 metadata:
   namespace: cybersec
   name: app1
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  # annotations:
+  #   kubernetes.io/ingress.class: "traefik"
+  #   cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
-  tls:
-    - hosts:
-        - app1.ndl.nponsard.net
-      secretName: app1-ndl-nponsard.net-tls
+  # tls:
+  #   - hosts:
+  #       - app1.minikube.local
+  #     secretName: app1-ndl-nponsard.net-tls
   rules:
-    - host: app1.ndl.nponsard.net
+    - host: minikube.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: app1
+                name: app-1
                 port:
                   number: 3000
 
@@ -29,10 +29,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: cybersec
-  name: app1
+  name: app-1
 spec:
   ports:
     - port: 3000
+      targetPort: 3000
       protocol: TCP
   selector:
     app: app1
