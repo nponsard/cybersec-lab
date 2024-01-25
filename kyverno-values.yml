@@ -1,0 +1,29 @@
+admissionController:
+  serviceMonitor:
+    enabled: true
+  # metricsService:
+  #   create: true
+  # # ...
+
+backgroundController:
+  serviceMonitor:
+    enabled: true
+  # metricsService:
+  #   create: true
+  # ...
+
+cleanupController:
+  serviceMonitor:
+    enabled: true
+
+  # metricsService:
+  #   create: true
+  # ...
+
+reportsController:
+  serviceMonitor:
+    enabled: true
+
+  # metricsService:
+  # create: true
+  # ...
