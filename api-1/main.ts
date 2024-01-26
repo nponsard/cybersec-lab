@@ -21,6 +21,12 @@ router.get("/whitelist/:id", async (ctx) => {
     args: ["-c", `cat whitelist | grep ${id}`],
   });
   const res = await command.output();
+
+  console.log(res);
+
+  console.log(new TextDecoder().decode(res.stderr));
+  console.log(new TextDecoder().decode(res.stdout));
+
   if (res.code === 0) {
     ctx.response.body = "Whitelisted";
     ctx.response.status = 200;
