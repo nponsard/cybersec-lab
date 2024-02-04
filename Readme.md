@@ -15,3 +15,15 @@ helm install kyverno-policies kyverno/kyverno-policies -n kyverno
 kubectl apply -f deployments/policies
 kubectl apply -f deployments
 ```
+
+
+## Service mesh
+
+```sh
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.20.2 sh -
+export PATH=$PWD/istio-1.20.2/bin:$PATH
+
+
+istioctl install --set profile=default -y
+kubectl label namespace cybersec istio-injection=enabled
+```
