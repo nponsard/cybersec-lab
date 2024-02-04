@@ -14,7 +14,7 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              app: app2
+              app: app1
       ports:
         - port: 3000
   egress:
