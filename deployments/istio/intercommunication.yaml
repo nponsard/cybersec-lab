@@ -1,0 +1,29 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: intercommunication-app1
+  namespace: cybersec
+spec:
+  selector:
+    matchLabels:
+      app: app1
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/cybersec/sa/cybersec-app"]
+--- 
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: intercommunication-app2
+  namespace: cybersec
+spec:
+  selector:
+    matchLabels:
+      app: app2
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/cybersec/sa/cybersec-app"]

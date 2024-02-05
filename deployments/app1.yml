@@ -57,6 +57,7 @@ spec:
     spec:
       containers:
         - name: app1
+          serviceAccountName: cybersec-app
           image: sautax/cybersec-app-1:1.7
           ports:
             - containerPort: 3000
