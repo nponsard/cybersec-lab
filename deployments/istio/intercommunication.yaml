@@ -27,3 +27,49 @@ spec:
   - from:
     - source:
         principals: ["cluster.local/ns/cybersec/sa/cybersec-app"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: my-service-ingress-policy
+  namespace: istio-system # The namespace of your Istio Ingress Gateway
+spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+  action: ALLOW # Specifies that the policy allows matched requests
+  rules:
+  - to:
+    - operation:
+        hosts: 
+        - "*" # Your service's hostname as exposed by Ingress
+        methods:
+        - "GET"
+
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: app1-ingress-allow
+  namespace: cybersec
+spec:
+  selector:
+    matchLabels:
+      app: app1
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["istio-system"]  
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: app1-ingress-allow
+  namespace: istio-system
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["cybersec"]
