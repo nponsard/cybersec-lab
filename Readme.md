@@ -2,7 +2,17 @@
 
 ## Deployment
 
-## Service mesh
+The deployments are made for a kubernetes environment with an nginx ingress controller.
+
+On minikube : 
+
+```sh
+minikube start
+minikube addons enable ingress
+```
+
+
+### Service mesh
 
 Install istio
 
@@ -17,10 +27,12 @@ kubectl create namespace cybersec
 kubectl label namespace cybersec istio-injection=enabled
 ```
 
+### Main deployment
+
 ```sh
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add kyverno https://kyverno.github.io/kyverno/
-
+helm repo update
 
 helm install monitoring prometheus-community/kube-prometheus-stack --values prom-values.yml
 

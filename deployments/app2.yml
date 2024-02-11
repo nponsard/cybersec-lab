@@ -43,7 +43,7 @@ kind: Deployment
 metadata:
   namespace: cybersec
   name: app2
-spec:
+spec:  
   selector:
     matchLabels:
       app: app2
@@ -54,9 +54,9 @@ spec:
         app: app2
         name: app2
     spec:
+      serviceAccountName: cybersec-app
       containers:
         - name: app2
-          serviceAccountName: cybersec-app
           image: sautax/cybersec-app-2:1.4
           ports:
             - containerPort: 3000
